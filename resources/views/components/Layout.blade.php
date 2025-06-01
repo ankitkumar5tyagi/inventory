@@ -19,6 +19,7 @@
                 <li><a href="#">Consumers</a></li>
                 <li><a href="#">Suppliers</a></li>
                 <li><a href="#">Transactions</a></li>
+                <li><a href="{{ route('category.index') }}">Categories</a></li>
                 @endauth
                 </div>
 

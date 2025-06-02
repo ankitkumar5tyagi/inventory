@@ -9,4 +9,5 @@ class Consumer extends Model
 {
     /** @use HasFactory<\Database\Factories\ConsumerFactory> */
     use HasFactory;
+
 }

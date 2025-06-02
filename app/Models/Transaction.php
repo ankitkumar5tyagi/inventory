@@ -10,10 +10,7 @@ class Transaction extends Model
     /** @use HasFactory<\Database\Factories\TransactionFactory> */
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'code',
-        'description',
-        'status'
-    ];
+   public function users() {
+    return $this->belongsTo(User::class);
+   }
 }

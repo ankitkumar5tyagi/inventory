@@ -17,6 +17,15 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        <div class="inputdiv">
+            <input class="w-5 h-5" type="checkbox" name="remember" id="remember">
+        <label class="form-check-label" for="remember">
+            Remember Me
+        </label>
+            @error('remember')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
         @session('error')
             <p class="text-red-600">{{session('error')}}</p>
         @endsession

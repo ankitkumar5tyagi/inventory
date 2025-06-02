@@ -6,7 +6,7 @@
 @source '../**/*.js';
 
 main {
-    @apply w-full bg-blue-100 min-h-screen text-center flex flex-col justify-between;
+    @apply w-full bg-blue-100 h-screen text-center;
 }
 
 header, footer {
@@ -17,6 +17,9 @@ header {
 }
 footer {
     @apply fixed bottom-0
+}
+a:hover {
+    @apply underline
 }
 h1 {
     @apply m-4 text-2xl font-bold text-teal-800;
@@ -35,4 +38,39 @@ input:focus {
 }
 .btn:hover {
     @apply bg-teal-900 cursor-pointer;
+}
+
+table {
+  @apply border-collapse border border-teal-800 w-full mt-4 text-left text-sm;
+}
+
+thead {
+  @apply bg-teal-400;
+}
+
+tr {
+  @apply hover:bg-gray-50;
+}
+
+th {
+  @apply border border-gray-500 px-4 py-2 font-semibold text-gray-700;
+}
+
+td {
+  @apply border border-gray-500 px-4 py-2;
+}
+
+.warningbtn {
+    @apply p-1 bg-amber-500 text-white rounded;
+}
+
+.warningbtn:hover {
+    @apply bg-amber-600;
+}
+
+.dangerbtn {
+    @apply p-1 bg-red-600 text-white rounded;
+}
+.dangerbtn:hover{
+    @apply bg-red-700 underline cursor-pointer;
 }

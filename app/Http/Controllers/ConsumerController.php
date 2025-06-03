@@ -12,7 +12,8 @@ class ConsumerController extends Controller
      */
     public function index()
     {
-        //
+        $consumers = Consumer::all();
+        return view('consumer.index', ['consumers'=>$consumers]);
     }
 
     /**
@@ -20,7 +21,7 @@ class ConsumerController extends Controller
      */
     public function create()
     {
-        //
+        return view('consumer.create');
     }
 
     /**
@@ -28,7 +29,17 @@ class ConsumerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $field = $request->validate([
+            'name' => 'required|max:50',
+            'code' => 'required|max:8|unique:consumers,code',
+            'location' => 'required|max:50',
+            'contact_person' => 'nullable',
+            'phone' => 'nullable|digits:10',
+            'status' => 'nullable'
+        ]);
+
+        Consumer::create($field);
+        return redirect()->route('consumer.index');
     }
 
     /**
@@ -44,7 +55,7 @@ class ConsumerController extends Controller
      */
     public function edit(Consumer $consumer)
     {
-        //
+        return view('consumer.edit', ['consumer'=>$consumer]);
     }
 
     /**
@@ -52,7 +63,17 @@ class ConsumerController extends Controller
      */
     public function update(Request $request, Consumer $consumer)
     {
-        //
+        $field = $request->validate([
+            'name' => 'required|max:50',
+            'code' => 'required|max:8',
+            'location' => 'required|max:50',
+            'contact_person' => 'nullable',
+            'phone' => 'nullable|digits:10',
+            'status' => 'nullable'
+        ]);
+
+        $consumer->update($field);
+        return redirect()->route('consumer.index');
     }
 
     /**
@@ -60,6 +81,7 @@ class ConsumerController extends Controller
      */
     public function destroy(Consumer $consumer)
     {
-        //
+        $consumer->delete();
+        return redirect()->route('consumer.index');
     }
 }

@@ -1,8 +1,8 @@
 <x-Layout>
     <div class=" w-4/5 m-auto p-10">
-    <h1>Add New Supplier</h1>
+    <h1>Add New Consumer</h1>
 
-    <form action="{{ route('supplier.store') }}" method="POST">
+    <form action="{{ route('consumer.store') }}" method="POST">
         @csrf
         <div class="inputdiv">
             <label for="name" class="block text-sm font-medium text-gray-700">Name: </label>
@@ -13,9 +13,25 @@
         </div>
 
         <div class="inputdiv">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email: </label>
-            <input type="text" name="email" value="{{ old('email') }}" id="email" @error('email') style="border-color: red;"@enderror>
-            @error('email')
+            <label for="code" class="block text-sm font-medium text-gray-700">Code: </label>
+            <input type="text" name="code" value="{{ old('code') }}" id="code" @error('code') style="border-color: red;"@enderror>
+            @error('code')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+
+        <div class="inputdiv">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location: </label>
+            <input type="text" name="location" value="{{ old('location') }}" id="location" @error('location') style="border-color: red;"@enderror>
+            @error('location')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+
+        <div class="inputdiv">
+            <label for="contact_person" class="block text-sm font-medium text-gray-700">Contact Person: </label>
+            <input type="text" name="contact_person" value="{{ old('contact_person') }}" id="contact_person" @error('contact_person') style="border-color: red;"@enderror>
+            @error('contact_person')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
@@ -24,22 +40,6 @@
             <label for="phone" class="block text-sm font-medium text-gray-700">Phone: </label>
             <input type="text" name="phone" value="{{ old('phone') }}" id="phone" @error('phone') style="border-color: red;"@enderror>
             @error('phone')
-                <span class="text-red-600">{{$message}}</span>
-            @enderror
-        </div>
-
-        <div class="inputdiv">
-            <label for="address" class="block text-sm font-medium text-gray-700">Address: </label>
-            <input type="text" name="address" value="{{ old('address') }}" id="address" @error('address') style="border-color: red;"@enderror>
-            @error('address')
-                <span class="text-red-600">{{$message}}</span>
-            @enderror
-        </div>
-
-        <div class="inputdiv">
-            <label for="company" class="block text-sm font-medium text-gray-700">Company: </label>
-            <input type="text" name="company" value="{{ old('company') }}" id="company" @error('company') style="border-color: red;"@enderror>
-            @error('company')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>

@@ -32,7 +32,7 @@
         <div class="inputdiv">
             <label for="status" class="block text-sm font-medium text-gray-700">Status: </label>
             <input type="hidden" value="0" name="status">
-            <input type="checkbox" name="status" id="statusbox" value="{{ ($category->status)? $category->status : "1" }}" {{ ($category->status == 1)? "checked" : ""}} @error('status') style="border-color: red;" @enderror>
+            <input type="checkbox" class="w-4 h-4" name="status" id="statusbox" value="{{ ($category->status)? $category->status : "1" }}" {{ ($category->status == 1)? "checked" : ""}} @error('status') style="border-color: red;" @enderror>
             <label for="status" id="status" class="block text-sm font-medium"></label>
             @error('status')
                 <span class="text-red-600">{{$message}}</span>

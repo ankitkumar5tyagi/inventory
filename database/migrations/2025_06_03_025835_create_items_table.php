@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('sku', ['Nos', "Meter", "Kilograms", "Grams", "Feet", "Square Feet"]);
+            $table->string('sku');
             $table->text('description')->nullable();
             $table->foreignId('category_id')->constrained()->restrictOnDelete();
             $table->foreignId('supplier_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->decimal('opening',8, 2)->default(0);
+            $table->decimal('reorder_level',8, 2)->default(0);
             $table->decimal('price', 8, 2)->default(0);
             $table->timestamps();
         });

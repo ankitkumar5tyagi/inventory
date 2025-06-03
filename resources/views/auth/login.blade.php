@@ -18,7 +18,7 @@
             @enderror
         </div>
         <div class="inputdiv">
-            <input class="w-5 h-5" type="checkbox" name="remember" id="remember">
+            <input class="w-4 h-4" type="checkbox" name="remember" id="remember">
         <label class="form-check-label" for="remember">
             Remember Me
         </label>

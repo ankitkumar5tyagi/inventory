@@ -25,9 +25,9 @@ h1 {
     @apply m-4 text-2xl font-bold text-teal-800;
 }
 .inputdiv {
-    @apply mb-4 flex flex-col items-center justify-center;
+    @apply mb-4 flex flex-col items-center justify-center w-1/2;
 }
-input {
+input,select {
     @apply w-60 p-2 border-1 border-teal-500 rounded;
 }
 input:focus {
@@ -73,4 +73,8 @@ td {
 }
 .dangerbtn:hover{
     @apply bg-red-700 underline cursor-pointer;
+}
+
+form {
+    @apply flex flex-wrap justify-around;
 }

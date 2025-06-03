@@ -2,17 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
+use App\Models\Supplier;
+use App\Models\Uom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
+
+    public function generateItemCode()
+{
+    do {
+        $code = strtolower(Str::random(8)); // Generates random 8-char alphanumeric
+    } while (Item::where('code', $code)->exists());
+
+    return $code;
+}
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $items = Item::with(['category','supplier'])->get();
+        return view('item.index', compact('items'));
     }
 
     /**
@@ -20,7 +38,11 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $generatedCode = $this->generateItemCode();
+        $suppliers = Supplier::all();
+        $categories = Category::all();
+        $uoms = Uom::all();
+        return view('item.create', ['categories'=> $categories, 'suppliers'=> $suppliers, 'uoms'=>$uoms, 'code'=>$generatedCode]);
     }
 
     /**
@@ -28,7 +50,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $field = $request->validate([
+            'code' => 'required|unique:items',
+            'name' => 'nullable',
+            'sku'  => 'required|unique:items',
+            'uom'   => 'nullable',
+            'description' => 'nullable',
+            'category_id' => 'nullable',
+            'supplier_id' => 'nullable',
+            'opening' => 'nullable',
+            'reorder_level' => 'nullable',
+            'price' => 'nullable',
+            'status' => 'nullable'
+        ]);
+        $user = Auth::user();
+        $user->item()->create($field);
+        return redirect()->route('item.index');
     }
 
     /**
@@ -44,7 +81,10 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $suppliers = Supplier::all();
+        $categories = Category::all();
+        $uoms = Uom::all();
+        return view('item.edit', compact('item','suppliers','categories','uoms'));
     }
 
     /**
@@ -52,7 +92,21 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $field = $request->validate([
+            'code' => ['required', Rule::unique('items')->ignore($item->id)],
+            'name' => 'nullable',
+            'sku'  => ['required', Rule::unique('items')->ignore($item->id)],
+            'uom'   => 'nullable',
+            'description' => 'nullable',
+            'category_id' => 'nullable',
+            'supplier_id' => 'nullable',
+            'opening' => 'nullable',
+            'reorder_level' => 'nullable',
+            'price' => 'nullable',
+            'status' => 'nullable'
+        ]);
+        $item->update($field);
+        return redirect()->route('item.index');
     }
 
     /**
@@ -60,6 +114,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('item.index');
     }
 }

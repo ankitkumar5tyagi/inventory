@@ -19,7 +19,7 @@ class Consumer extends Model
         'status'
     ];
 
-    public function transactions(){
+    public function transaction(){
         return $this->hasMany(Transaction::class);
     }
 }

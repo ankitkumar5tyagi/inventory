@@ -17,7 +17,7 @@ class Category extends Model
         'status'
     ];
 
-    public function items () {
+    public function item () {
         return $this->hasMany(Item::class);
     }
 }

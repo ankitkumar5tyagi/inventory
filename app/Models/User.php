@@ -46,11 +46,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function items() {
+    public function item() {
         return $this->hasMany(Item::class);
     }
 
-    public function transactions() {
+    public function transaction() {
         return $this->hasMany(Transaction::class);
     }
 }

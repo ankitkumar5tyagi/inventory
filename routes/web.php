@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConsumerController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UomController;
 use App\Models\Category;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +32,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('category' , CategoryController::class);
 Route::resource('supplier', SupplierController::class);
 Route::resource('consumer', ConsumerController::class);
+Route::resource('item', ItemController::class);
+Route::resource('uom', UomController::class);
 
 Route::get('/export-suppliers', [SupplierController::class, 'export'])->name('suppliers.export');
 

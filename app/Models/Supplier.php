@@ -19,7 +19,7 @@ class Supplier extends Model
         'status'
     ];
 
-    public function items() {
-        return $this->belongsToMany(Item::class);
+    public function item() {
+        return $this->hasMany(Item::class);
     }
 }

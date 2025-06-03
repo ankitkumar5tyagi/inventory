@@ -17,7 +17,7 @@
         <tbody>
     @foreach ($categories as $category)
         <tr>
-            <td>{{$category->name}}</td>
+            <td><a href="{{ route('category.show', $category) }}">{{$category->name}}</a></td>
             <td>{{$category->code}}</td>
             <td>{{$category->description}}</td>
             <td>{{($category->status == 1)? 'Active': 'Inactive'}}</td>
@@ -27,6 +27,7 @@
                 @method('DELETE')
             <button class="dangerbtn" type="submit">Delete</button>  
             </form></td>
+            
         </tr>
     @endforeach
         </tbody>

@@ -10,11 +10,11 @@ class Transaction extends Model
     /** @use HasFactory<\Database\Factories\TransactionFactory> */
     use HasFactory;
 
-   public function users() {
+   public function user() {
     return $this->belongsTo(User::class);
    }
 
-   public function consumers() {
+   public function consumer() {
     return $this->belongsTo(Consumer::class);
    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UomController;
+use App\Http\Controllers\TransactionController;
 use App\Models\Category;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,7 @@ Route::resource('supplier', SupplierController::class);
 Route::resource('consumer', ConsumerController::class);
 Route::resource('item', ItemController::class);
 Route::resource('uom', UomController::class);
+Route::resource('transaction', TransactionController::class);
 
 Route::get('/export-suppliers', [SupplierController::class, 'export'])->name('suppliers.export');
 

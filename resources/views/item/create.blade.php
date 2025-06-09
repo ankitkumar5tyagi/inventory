@@ -63,7 +63,7 @@
             <label for="supplier_id" class="block text-sm font-medium text-gray-700">Supplier: </label>
             <select type="text" name="supplier_id" value="{{ old('supplier_id') }}" id="supplier_id" @error('category_id') style="border-color: red;"@enderror>
                 @foreach ($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}">{{$supplier->name . " - " . $supplier->company}}</option>
+                    <option value="{{ $supplier->id }}">{{$supplier->company . " - " . $supplier->name}}</option>
                 @endforeach
             </select>
             @error('supplier_id')

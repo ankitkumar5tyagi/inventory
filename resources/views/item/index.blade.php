@@ -31,7 +31,7 @@
             <td>{{$item->uom}}</td>
             <td>{{$item->description}}</td>
             <td>{{$item->category->name}}</td>
-            <td>{{$item->supplier->name . ' - ' . $item->supplier->company}}</td>
+            <td>{{$item->supplier->company . ' - ' . $item->supplier->name}}</td>
             <td>{{$item->opening}}</td>
             <td>{{$item->reorder_level}}</td>
             <td>{{$item->price}}</td>

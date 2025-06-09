@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consumer;
+use App\Models\Item;
+use App\Models\Supplier;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -12,7 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::with(['item','supplier','consumer'])->get();
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -20,7 +25,10 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $consumers = Consumer::all();
+        $suppliers = Supplier::all();
+        $items = Item::all();
+        return view('transaction.create',compact('consumers','suppliers','items'));
     }
 
     /**
@@ -28,7 +36,28 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $field = $request->validate([
+            'date'=>'required|date',
+            'type' => 'required',
+            'consumer_id' => 'nullable',
+            'supplier_id' => 'nullable',
+            'item_id' => 'required',
+            'uom' => 'required',
+            'quantity' => 'required',
+            'note' => 'nullable'
+        ]);
+        $user = Auth::user();
+        $user->transaction()->create([
+            'date'=> $request->date,
+            'type' => $request->type,
+            'consumer_id' => $request->consumer_id,
+            'supplier_id' => $request->supplier_id,
+            'item_id' => $request->item_id,
+            'uom' => $request->uom,
+            'quantity' => $request->quantity,
+            'note' => $request->note
+        ]);
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -44,7 +73,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('transaction.edit', $transaction);
     }
 
     /**

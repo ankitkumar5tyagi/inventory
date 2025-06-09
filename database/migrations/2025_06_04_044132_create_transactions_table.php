@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->enum('type', ['Issue', 'Receipt', 'Purchase','Purchase Return']);
-            $table->foreignId('consumer_id')->constrained('consumers')->nullable()->restrictOnDelete();
-            $table->foreignId('supplier_id')->constrained('suppliers')->nullable()->restrictOnDelete();
+            $table->foreignId('consumer_id')->nullable()->constrained('consumers')->restrictOnDelete();
+            $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->restrictOnDelete();
             $table->foreignId('item_id')->constrained('items')->restrictOnDelete();
-            $table->string('sku');
+            $table->string('uom');
             $table->decimal('quantity', 8, 2);
             $table->text('note')->nullable();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();

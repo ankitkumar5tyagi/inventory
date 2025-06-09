@@ -18,7 +18,7 @@
                 <li><a href="{{ route('item.index') }}">Items</a></li>
                 <li><a href="{{ route('consumer.index')}}">Consumers</a></li>
                 <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
-                <li><a href="#">Transactions</a></li>
+                <li><a href="{{ route('transaction.index') }}">Transactions</a></li>
                 <li><a href="{{ route('category.index') }}">Categories</a></li>
                 <li><a href="{{ route('uom.index') }}">UOM</a></li>
                 @endauth

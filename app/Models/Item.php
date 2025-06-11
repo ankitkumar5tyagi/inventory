@@ -21,6 +21,8 @@ class Item extends Model
             'opening',
             'reorder_level',
             'price',
+            'store',
+            'location',
             'status'
     ];
 

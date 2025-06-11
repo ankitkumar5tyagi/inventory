@@ -61,6 +61,8 @@ class ItemController extends Controller
             'opening' => 'nullable',
             'reorder_level' => 'nullable',
             'price' => 'nullable',
+            'store' => 'required',
+            'location' => 'nullable',
             'status' => 'nullable'
         ]);
         $user = Auth::user();
@@ -103,6 +105,8 @@ class ItemController extends Controller
             'opening' => 'nullable',
             'reorder_level' => 'nullable',
             'price' => 'nullable',
+            'store' => 'required',
+            'location' => 'nullable',
             'status' => 'nullable'
         ]);
         $item->update($field);

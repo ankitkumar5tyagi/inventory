@@ -92,6 +92,20 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        <div class="inputdiv">
+            <label for="store" class="block text-sm font-medium text-gray-700">Store: </label>
+            <input type="text" name="store" value="{{ old('store') }}" id="store" @error('category_id') style="border-color: red;"@enderror>
+            @error('store')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="inputdiv">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location: </label>
+            <input type="text" name="location" value="{{ old('location') }}" id="location" @error('category_id') style="border-color: red;"@enderror>
+            @error('location')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
 
         <div class="inputdiv">
             <label for="status" class="block text-sm font-medium text-gray-700">Status: </label>

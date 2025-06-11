@@ -88,8 +88,22 @@
         </div>
         <div class="inputdiv">
             <label for="price" class="block text-sm font-medium text-gray-700">Price: </label>
-            <input type="text" name="price" value="{{ $item->price }}" id="price" @error('category_id') style="border-color: red;"@enderror>
+            <input type="text" name="price" value="{{ $item->price }}" id="price" @error('price') style="border-color: red;"@enderror>
             @error('price')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="inputdiv">
+            <label for="store" class="block text-sm font-medium text-gray-700">Store: </label>
+            <input type="text" name="store" value="{{ $item->store }}" id="store" @error('store') style="border-color: red;"@enderror>
+            @error('store')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="inputdiv">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location: </label>
+            <input type="text" name="location" value="{{ $item->location }}" id="location" @error('location') style="border-color: red;"@enderror>
+            @error('location')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>

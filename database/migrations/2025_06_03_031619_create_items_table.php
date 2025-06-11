@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('sku');
+            $table->string('uom');
             $table->text('description')->nullable();
             $table->foreignId('category_id')->constrained()->restrictOnDelete();
             $table->foreignId('supplier_id')->nullable()->constrained()->restrictOnDelete();
@@ -23,6 +24,9 @@ return new class extends Migration
             $table->decimal('opening',8, 2)->default(0);
             $table->decimal('reorder_level',8, 2)->default(0);
             $table->decimal('price', 8, 2)->default(0);
+            $table->string('store');
+            $table->string('location')->nullable();
+            $table->boolean('status')->default(TRUE);
             $table->timestamps();
         });
     }

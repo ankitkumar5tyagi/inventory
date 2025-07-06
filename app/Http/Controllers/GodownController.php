@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Uom;
+use App\Models\godown;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
-class UomController extends Controller
+class GodownController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $uoms = Uom::all();
-        return view('uom.index', compact('uoms'));
+        $godowns = Godown::all();
+        return view('godown.index', compact('godowns'));
     }
 
     /**
@@ -22,7 +21,7 @@ class UomController extends Controller
      */
     public function create()
     {
-        return view('uom.create');
+        return view('godown.create');
     }
 
     /**
@@ -30,18 +29,18 @@ class UomController extends Controller
      */
     public function store(Request $request)
     {
-        $field = $request->validate([
+        $fields = $request->validate([
             'name' => 'required',
             'description' => 'required'
         ]);
-        $uom = Uom::create($field);
-        return redirect()->route('uom.index');
+        Godown::create($fields);
+        return redirect()->route('godown.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Uom $uom)
+    public function show(godown $godown)
     {
         //
     }
@@ -49,30 +48,30 @@ class UomController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Uom $uom)
+    public function edit(godown $godown)
     {
-        return view('uom.edit', compact('uom'));
+        return view('godown.edit', compact('godown'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Uom $uom)
+    public function update(Request $request, godown $godown)
     {
-        $field = $request->validate([
+        $fields = $request->validate([
             'name' => 'required',
             'description' => 'required'
         ]);
-        $uom->update($field);
-        return redirect()->route('uom.index');
+        $godown->update($fields);
+        return redirect()->route('godown.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Uom $uom)
+    public function destroy(godown $godown)
     {
-        $uom->delete();
-        return redirect()->route('uom.index');
+        $godown->delete();
+        return redirect()->route('godown.index');
     }
 }

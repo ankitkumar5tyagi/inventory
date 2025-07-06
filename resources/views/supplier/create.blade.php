@@ -43,6 +43,20 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        <div class="inputdiv">
+            <label for="pan" class="block text-sm font-medium text-gray-700">PAN No: </label>
+            <input type="text" name="pan" value="{{ old('pan') }}" id="pan" @error('pan') style="border-color: red;"@enderror>
+            @error('pan')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="inputdiv">
+            <label for="gst" class="block text-sm font-medium text-gray-700">GST No: </label>
+            <input type="text" name="gst" value="{{ old('gst') }}" id="gst" @error('gst') style="border-color: red;"@enderror>
+            @error('gst')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
 
         <div class="inputdiv">
             <label for="status" class="block text-sm font-medium text-gray-700">Status: </label>

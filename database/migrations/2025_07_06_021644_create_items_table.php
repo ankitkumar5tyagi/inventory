@@ -14,17 +14,16 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->string('name');
-            $table->string('sku');
-            $table->string('uom');
+            $table->string('name')->nullable();
+            $table->foreignId('uom_id')->constrained()->restrictOnDelete();
             $table->text('description')->nullable();
+            $table->foreignId('group_id')->constrained()->restrictOnDelete();
             $table->foreignId('category_id')->constrained()->restrictOnDelete();
-            $table->foreignId('supplier_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->decimal('opening',8, 2)->default(0);
+            $table->decimal('opening_price', 8, 2)->default(0);
             $table->decimal('reorder_level',8, 2)->default(0);
-            $table->decimal('price', 8, 2)->default(0);
-            $table->string('store');
+            $table->string('godown_id')->constrained()->restrictOnDelete();
             $table->string('location')->nullable();
             $table->boolean('status')->default(TRUE);
             $table->timestamps();

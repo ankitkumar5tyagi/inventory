@@ -36,6 +36,8 @@ class SupplierController extends Controller
             'phone' => 'nullable|digits:10',
             'address' => 'nullable',
             'company' => 'nullable',
+            'pan' => 'nullable',
+            'gst' => 'nullable',
             'status' => 'nullable'
         ]);
          
@@ -45,6 +47,8 @@ class SupplierController extends Controller
         $supplier->phone = $request->phone;
         $supplier->address = $request->address;
         $supplier->company = $request->company;
+        $supplier->pan = $request->pan;
+        $supplier->gst = $request->gst;
         $supplier->status = $request->status;
         $supplier->save();
         return redirect()->route('supplier.index');
@@ -77,6 +81,8 @@ class SupplierController extends Controller
             'phone' => 'nullable|digits:10',
             'address' => 'nullable',
             'company' => 'nullable',
+            'pan' => 'nullable',
+            'gst' => 'nullable',
             'status' => 'nullable'
         ]);
 

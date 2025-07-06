@@ -9,16 +9,15 @@
             <tr>
                 <th>Code</th>
                 <th>Name</th>
-                <th>SKU</th>
                 <th>UOM</th>
                 <th>Description</th>
+                <th>Group</th>
                 <th>Category</th>
-                <th>Supplier</th>
                 <th>Opening Qty</th>
+                <th>Opening Price</th>
                 <th>Reorder Level</th>
-                <th>Price</th>
-                <th>Store</th>
-                <th>Rack No</th>
+                <th>Godown</th>
+                <th>Location</th>
                 <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -29,15 +28,14 @@
         <tr>
             <td>{{$item->code}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->sku}}</td>
-            <td>{{$item->uom}}</td>
+            <td>{{$item->uom->code}}</td>
             <td>{{$item->description}}</td>
+            <td>{{$item->group->name}}</td>
             <td>{{$item->category->name}}</td>
-            <td>{{$item->supplier ? $item->supplier->company . ' - ' . $item->supplier->name : '-'}}</td>
             <td>{{$item->opening}}</td>
+            <td>{{$item->opening_price}}</td>
             <td>{{$item->reorder_level}}</td>
-            <td>{{$item->price}}</td>
-            <td>{{$item->store}}</td>
+            <td>{{$item->godown->name}}</td>
             <td>{{$item->location}}</td>
             <td>{{($item->status == 1)? 'Active': 'Inactive'}}</td>
             <td><a class="warningbtn" href="{{ route('item.edit', $item) }}">Edit</a></td>

@@ -14,6 +14,7 @@
                 <th>Item</th>
                 <th>UOM</th>
                 <th>Quantity</th>
+                <th>Bill/Order No</th>
                 <th>Note</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -29,6 +30,7 @@
             <td>{{$transaction->item->sku}}</td>
             <td>{{$transaction->uom}}</td>
             <td>{{$transaction->quantity}}</td>
+            <td>{{$transaction->bill_order_no}}</td>
             <td>{{$transaction->note}}</td>
             <td><a class="warningbtn" href="{{ route('transaction.edit', $transaction) }}">Edit</a></td>
             <td><form action="{{route('transaction.destroy', $transaction)}}" method="post">

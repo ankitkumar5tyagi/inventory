@@ -18,6 +18,7 @@ class Transaction extends Model
         'item_id',
         'uom',
         'quantity',
+        'bill_order_no',
         'note'
     ];
 

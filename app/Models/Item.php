@@ -13,15 +13,14 @@ class Item extends Model
     protected $fillable = [
             'code',
             'name',
-            'sku' ,
-            'uom',
+            'uom_id',
             'description',
+            'group_id',
             'category_id',
-            'supplier_id',
             'opening',
+            'opening_price',
             'reorder_level',
-            'price',
-            'store',
+            'godown_id',
             'location',
             'status'
     ];
@@ -33,8 +32,13 @@ class Item extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
-
-    public function supplier() {
-        return $this->belongsTo(Supplier::class);
+    public function uom() {
+        return $this->belongsTo(UOM::class);
+    }
+    public function group() {
+        return $this->belongsTo(Group::class);
+    }
+    public function godown() {
+        return $this->belongsTo(Godown::class);
     }
 }

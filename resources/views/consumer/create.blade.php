@@ -1,6 +1,6 @@
 <x-Layout>
     <div class=" w-4/5 m-auto p-10">
-    <h1>Add New Consumer</h1>
+    <h1>Add New Department</h1>
 
     <form action="{{ route('consumer.store') }}" method="POST">
         @csrf

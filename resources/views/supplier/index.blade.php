@@ -12,6 +12,8 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Company</th>
+                <th>PAN No</th>
+                <th>GST No</th>
                 <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -25,6 +27,8 @@
             <td>{{$supplier->phone}}</td>
             <td>{{$supplier->address}}</td>
             <td>{{$supplier->company}}</td>
+            <td>{{$supplier->pan}}</td>
+            <td>{{$supplier->gst}}</td>
             <td>{{($supplier->status == 1)? 'Active': 'Inactive'}}</td>
             <td><a class="warningbtn" href="{{ route('supplier.edit', $supplier) }}">Edit</a></td>
             <td><form action="{{route('supplier.destroy', $supplier)}}" method="post">

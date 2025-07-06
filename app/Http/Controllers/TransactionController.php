@@ -44,6 +44,7 @@ class TransactionController extends Controller
             'item_id' => 'required',
             'uom' => 'required',
             'quantity' => 'required',
+            'bill_order_no'=> 'nullable',
             'note' => 'nullable'
         ]);
         $user = Auth::user();
@@ -55,6 +56,7 @@ class TransactionController extends Controller
             'item_id' => $request->item_id,
             'uom' => $request->uom,
             'quantity' => $request->quantity,
+            'bill_order_no'=> $request->bill_order_no,
             'note' => $request->note
         ]);
         return redirect()->route('transaction.index');

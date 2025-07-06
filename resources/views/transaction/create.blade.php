@@ -79,6 +79,13 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        <div class="inputdiv">
+            <label for="bill_order_no" class="block text-sm font-medium text-gray-700">Invoice Number: </label>
+            <input type="text" name="bill_order_no" value="{{ old('bill_order_no') }}" id="bill_order_no" @error('bill_order_no') style="border-color: red;"@enderror>
+            @error('bill_order_no')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
         
         <div class="inputdiv">
             <label for="note" class="block text-sm font-medium text-gray-700">Note: </label>

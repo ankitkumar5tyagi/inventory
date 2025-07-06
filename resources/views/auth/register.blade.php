@@ -1,4 +1,5 @@
 <x-Layout>
+    <div class=" w-4/5 m-auto p-10">
     <h1> Register New Account </h1>
     <form class="flex-1" method="POST" action="{{ route('register.submit') }}">
         @csrf
@@ -33,4 +34,5 @@
 
         <input class="btn" type="submit" value="Register">
     </form>
+    </div>
 </x-Layout>

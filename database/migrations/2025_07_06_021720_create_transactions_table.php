@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained('items')->restrictOnDelete();
             $table->string('uom');
             $table->decimal('quantity', 8, 2);
+            $table->string('bill_order_no')->nullable();
             $table->text('note')->nullable();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->timestamps();

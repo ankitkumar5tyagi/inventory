@@ -6,8 +6,8 @@
     <table>
         <thead>
             <tr>
-                <th>Code</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -15,8 +15,8 @@
         <tbody>
     @foreach ($uoms as $uom)
         <tr>
-            <td>{{$uom->code}}</td>
             <td>{{$uom->name}}</td>
+            <td>{{$uom->description}}</td>
             <td><a class="warningbtn" href="{{ route('uom.edit', $uom) }}">Edit</a></td>
             <td><form action="{{route('uom.destroy', $uom)}}" method="post">
                 @csrf

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('company')->nullable();
+            $table->string('pan')->nullable();
+            $table->string('gst')->nullable();
             $table->boolean('status')->default(true); // true = active
             $table->timestamps();
         });

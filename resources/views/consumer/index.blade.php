@@ -1,7 +1,7 @@
 <x-Layout>
     <div class=" flex-1 h-20 w-4/5 m-auto p-10">
-    <h1>Consumers</h1>
-    <a class="btn" href="{{ route('consumer.create') }}">Add Consumer</a>
+    <h1>Department</h1>
+    <a class="btn" href="{{ route('consumer.create') }}">Add Department</a>
     <a class="btn" href="#">Download</a>
     
     <table>

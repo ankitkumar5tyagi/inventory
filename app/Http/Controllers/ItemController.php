@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Godown;
+use App\Models\Group;
 use App\Models\Item;
 use App\Models\Supplier;
 use App\Models\Uom;
+use GMP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -29,7 +32,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with(['category','supplier'])->get();
+        $items = Item::with(['category','uom','group','godown'])->get();
         return view('item.index', compact('items'));
     }
 
@@ -39,10 +42,11 @@ class ItemController extends Controller
     public function create()
     {
         $generatedCode = $this->generateItemCode();
-        $suppliers = Supplier::all();
         $categories = Category::all();
+        $godowns = Godown::all();
+        $groups = Group::all();
         $uoms = Uom::all();
-        return view('item.create', ['categories'=> $categories, 'suppliers'=> $suppliers, 'uoms'=>$uoms, 'code'=>$generatedCode]);
+        return view('item.create', ['godowns' => $godowns, 'groups'=>$groups, 'categories'=> $categories, 'uoms'=>$uoms, 'code'=>$generatedCode]);
     }
 
     /**
@@ -50,18 +54,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $field = $request->validate([
-            'code' => 'required|unique:items',
+       $field = $request->validate([
+            'code' => 'required',
             'name' => 'nullable',
-            'sku'  => 'required|unique:items',
-            'uom'   => 'nullable',
+            'uom_id' => 'nullable',
             'description' => 'nullable',
+            'group_id' => 'nullable',
             'category_id' => 'nullable',
-            'supplier_id' => 'nullable',
             'opening' => 'nullable',
+            'opening_price' => 'nullable',
             'reorder_level' => 'nullable',
-            'price' => 'nullable',
-            'store' => 'required',
+            'godown_id' => 'required',
             'location' => 'nullable',
             'status' => 'nullable'
         ]);
@@ -85,8 +88,10 @@ class ItemController extends Controller
     {
         $suppliers = Supplier::all();
         $categories = Category::all();
+        $godowns = Godown::All();
         $uoms = Uom::all();
-        return view('item.edit', compact('item','suppliers','categories','uoms'));
+        $groups = Group::all();
+        return view('item.edit', compact('item','suppliers','categories','uoms','godowns', 'groups'));
     }
 
     /**
@@ -97,15 +102,14 @@ class ItemController extends Controller
         $field = $request->validate([
             'code' => ['required', Rule::unique('items')->ignore($item->id)],
             'name' => 'nullable',
-            'sku'  => ['required', Rule::unique('items')->ignore($item->id)],
-            'uom'   => 'nullable',
+            'uom_id'   => 'nullable',
             'description' => 'nullable',
+            'group_id' => 'nullable',
             'category_id' => 'nullable',
-            'supplier_id' => 'nullable',
             'opening' => 'nullable',
+            'opening_price' => 'nullable',
             'reorder_level' => 'nullable',
-            'price' => 'nullable',
-            'store' => 'required',
+            'godown_id' => 'required',
             'location' => 'nullable',
             'status' => 'nullable'
         ]);

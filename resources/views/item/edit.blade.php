@@ -20,23 +20,15 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
-
-        <div class="inputdiv">
-            <label for="sku" class="block text-sm font-medium text-gray-700">SKU: </label>
-            <input type="text" name="sku" value="{{ $item->sku }}" id="sku" @error('sku') style="border-color: red;"@enderror>
-            @error('sku')
-                <span class="text-red-600">{{$message}}</span>
-            @enderror
-        </div>
         
         <div class="inputdiv">
-            <label for="uom" class="block text-sm font-medium text-gray-700">UOM: </label>
-            <select type="text" name="uom" value="{{ $item->uom }}" id="uom" @error('uom') style="border-color: red;"@enderror>
+            <label for="uom_id" class="block text-sm font-medium text-gray-700">UOM: </label>
+            <select name="uom_id" id="uom_id" @error('uom_id') style="border-color: red;"@enderror>
             @foreach ($uoms as $uom)
-                <option value="{{ $uom->code }}">{{$uom->code}}</option>
+                <option value="{{ $uom->id }}" {{ $uom->id == $item->uom_id ? 'selected' : '' }}>{{$uom->code}}</option>
             @endforeach
             </select>
-            @error('uom')
+            @error('uom_id')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
@@ -50,24 +42,25 @@
         </div>
 
         <div class="inputdiv">
-            <label for="category_id" class="block text-sm font-medium text-gray-700">Category: </label>
-            <select type="text" name="category_id" value="{{ $item->category_id }}" id="category_id" @error('category_id') style="border-color: red;"@enderror>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{$category->name}}</option>
+            <label for="group_id" class="block text-sm font-medium text-gray-700">Group: </label>
+            <select name="group_id" id="group_id" @error('category_id') style="border-color: red;"@enderror>
+                @foreach ($groups as $group)
+                    <option value="{{ $group->id }}" {{ $group->id == $item->group_id ? 'selected' : '' }}>{{$group->name}}</option>
                 @endforeach
             </select>
-            @error('category_id')
+            @error('group_id')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+
         <div class="inputdiv">
-            <label for="supplier_id" class="block text-sm font-medium text-gray-700">Supplier: </label>
-            <select type="text" name="supplier_id" value="{{ $item->supplier_id }}" id="supplier_id" @error('category_id') style="border-color: red;"@enderror>
-                @foreach ($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}">{{$supplier->company . " - " . $supplier->name}}</option>
+            <label for="category_id" class="block text-sm font-medium text-gray-700">Category: </label>
+            <select type="text" name="category_id" value="{{ $item->category_id }}" id="category_id" @error('category_id') style="border-color: red;"@enderror>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ $category->id == $item->category_id ? 'selected' : '' }}>{{$category->name}}</option>
                 @endforeach
             </select>
-            @error('supplier_id')
+            @error('category_id')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
@@ -79,6 +72,15 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        
+        <div class="inputdiv">
+            <label for="opening_price" class="block text-sm font-medium text-gray-700">Opening Price: </label>
+            <input type="text" name="opening_price" value="{{ $item->opening_price }}" id="opening_price" @error('opening_price') style="border-color: red;"@enderror>
+            @error('opening_price')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
+
         <div class="inputdiv">
             <label for="reorder_level" class="block text-sm font-medium text-gray-700">Reorder Level: </label>
             <input type="text" name="reorder_level" value="{{ $item->reorder_level }}" id="reorder_level" @error('category_id') style="border-color: red;"@enderror>
@@ -86,18 +88,16 @@
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
+        
         <div class="inputdiv">
-            <label for="price" class="block text-sm font-medium text-gray-700">Price: </label>
-            <input type="text" name="price" value="{{ $item->price }}" id="price" @error('price') style="border-color: red;"@enderror>
-            @error('price')
-                <span class="text-red-600">{{$message}}</span>
-            @enderror
-        </div>
-        <div class="inputdiv">
-            <label for="store" class="block text-sm font-medium text-gray-700">Store: </label>
-            <input type="text" name="store" value="{{ $item->store }}" id="store" @error('store') style="border-color: red;"@enderror>
-            @error('store')
-                <span class="text-red-600">{{$message}}</span>
+            <label for="godown_id" class="block text-sm font-medium text-gray-700">Godown: </label>
+            <select type="text" name="godown_id" value="{{ $item->godown_id }}" id="godown_id" @error('category_id') style="border-color: red;"@enderror>
+                @foreach ($godowns as $godown)
+                    <option value="{{ $godown->id }}">{{$godown->name}}</option>
+                @endforeach
+            </select>
+            @error('godown_id')
+                <span class="text-red-600">{{$message}}</span>_id
             @enderror
         </div>
         <div class="inputdiv">

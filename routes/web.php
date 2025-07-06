@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConsumerController;
+use App\Http\Controllers\GodownController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UomController;
@@ -31,6 +33,8 @@ Route::middleware('auth')->group(function(){
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::resource('category' , CategoryController::class);
+Route::resource('group', GroupController::class);
+Route::resource('godown', GodownController::class);
 Route::resource('supplier', SupplierController::class);
 Route::resource('consumer', ConsumerController::class);
 Route::resource('item', ItemController::class);

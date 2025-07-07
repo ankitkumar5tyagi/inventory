@@ -10,7 +10,7 @@
                 <th>Date</th>
                 <th>Type</th>
                 <th>Consumer</th>
-                <th>Supplier</th>
+                <th>Party</th>
                 <th>Item</th>
                 <th>UOM</th>
                 <th>Quantity</th>
@@ -26,7 +26,7 @@
             <td>{{$transaction->date}}</td>
             <td>{{$transaction->type}}</td>
             <td>{{$transaction->consumer?->name ?? '-'}}</td>
-            <td>{{$transaction->supplier ? $transaction->supplier->company . ' - ' . $transaction->supplier->name : '-'}}</td>
+            <td>{{$transaction->party ? $transaction->party->company . ' - ' . $transaction->party->name : '-'}}</td>
             <td>{{$transaction->item->sku}}</td>
             <td>{{$transaction->uom}}</td>
             <td>{{$transaction->quantity}}</td>

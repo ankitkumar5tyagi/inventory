@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Godown;
 use App\Models\Group;
 use App\Models\Item;
-use App\Models\Supplier;
+use App\Models\Party;
 use App\Models\Uom;
 use GMP;
 use Illuminate\Http\Request;
@@ -86,12 +86,12 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $suppliers = Supplier::all();
+        $parties = Party::all();
         $categories = Category::all();
         $godowns = Godown::All();
         $uoms = Uom::all();
         $groups = Group::all();
-        return view('item.edit', compact('item','suppliers','categories','uoms','godowns', 'groups'));
+        return view('item.edit', compact('item','parties','categories','uoms','godowns', 'groups'));
     }
 
     /**

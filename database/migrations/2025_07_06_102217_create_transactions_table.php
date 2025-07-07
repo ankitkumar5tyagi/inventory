@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->enum('type', ['Issue', 'Receipt', 'Purchase','Purchase Return']);
+            $table->foreignId('voucher_id')->constrained()->restrictOnDelete();
             $table->foreignId('consumer_id')->nullable()->constrained('consumers')->restrictOnDelete();
-            $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->restrictOnDelete();
+            $table->foreignId('supplier_id')->nullable()->constrained('parties')->restrictOnDelete();
             $table->foreignId('item_id')->constrained('items')->restrictOnDelete();
             $table->string('uom');
             $table->decimal('quantity', 8, 2);

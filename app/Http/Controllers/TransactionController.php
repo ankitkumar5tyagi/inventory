@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Consumer;
 use App\Models\Item;
-use App\Models\Supplier;
+use App\Models\Party;
 use App\Models\Transaction;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with(['item','supplier','consumer'])->get();
+        $transactions = Transaction::with(['item','party','consumer'])->get();
         return view('transaction.index', compact('transactions'));
     }
 
@@ -26,9 +27,10 @@ class TransactionController extends Controller
     public function create()
     {
         $consumers = Consumer::all();
-        $suppliers = Supplier::all();
+        $parties = Party::all();
         $items = Item::all();
-        return view('transaction.create',compact('consumers','suppliers','items'));
+        $vouchers = Voucher::all();
+        return view('transaction.create',compact('consumers','parties','items', 'vouchers'));
     }
 
     /**

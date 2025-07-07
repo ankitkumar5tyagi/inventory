@@ -25,7 +25,7 @@
             <label for="uom_id" class="block text-sm font-medium text-gray-700">UOM: </label>
             <select name="uom_id" id="uom_id" @error('uom_id') style="border-color: red;"@enderror>
             @foreach ($uoms as $uom)
-                <option value="{{ $uom->id }}" {{ $uom->id == $item->uom_id ? 'selected' : '' }}>{{$uom->code}}</option>
+                <option value="{{ $uom->id }}" {{ $uom->id == $item->uom_id ? 'selected' : '' }}>{{$uom->name}}</option>
             @endforeach
             </select>
             @error('uom_id')

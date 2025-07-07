@@ -22,9 +22,9 @@
         
         <div class="inputdiv">
             <label for="uom_id" class="block text-sm font-medium text-gray-700">UOM: </label>
-            <select name="uom_id" value="{{ old('uom_id') }}" id="uom_id" @error('uom_id') style="border-color: red;"@enderror>
+            <select name="uom_id" id="uom_id" @error('uom_id') style="border-color: red;"@enderror>
             @foreach ($uoms as $uom)
-                <option value="{{ $uom->id }}">{{$uom->code}}</option>
+                <option value="{{ $uom->id }}">{{$uom->name}}</option>
             @endforeach
             </select>
             @error('uom_id')

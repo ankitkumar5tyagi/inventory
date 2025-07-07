@@ -13,15 +13,14 @@
         </div>
 
         <div class="inputdiv">
-            <label for="type" class="block text-sm font-medium text-gray-700">Type: </label>
-            <select type="text" value="{{ old('type') }}" name="type" id="type" @error('type') style="border-color: red;"@enderror onchange="updateForm()">
-                <option value="">Select Transaction Type</option>
-                <option value="Issue">Issue</option>
-                <option value="Reciept">Reciept</option>
-                <option value="Purchase">Purchase</option>
-                <option value="Purchase Return">Purchase Return</option>
+            <label for="voucher_id" class="block text-sm font-medium text-gray-700">Voucher: </label>
+            <select type="text" value="{{ old('voucher_id') }}" name="voucher_id" id="voucher_id" @error('voucher_id') style="border-color: red;"@enderror onchange="updateForm()">
+            @foreach ($vouchers as $voucher)
+                <option value="{{ $voucher->id }}">{{$voucher->name}}</option>
+            @endforeach   
+                
             </select>
-            @error('type')
+            @error('voucher_id')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
@@ -39,12 +38,12 @@
                 @enderror
         </div>
         
-        <div class="inputdiv" id="supplier" style="display: none">
-            <label for="supplier_id" class="block text-sm font-medium text-gray-700">Supplier: </label>
+        <div class="inputdiv" id="party" style="display: none">
+            <label for="supplier_id" class="block text-sm font-medium text-gray-700">Party: </label>
             <select type="text" name="supplier_id" value="{{ old('supplier_id') }}" id="supplier_id" @error('supplier_id') style="border-color: red;"@enderror>
-               <option value="">Select Supplier</option>
-                @foreach ($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}">{{$supplier->company . ' - ' . $supplier->name}}</option>
+               <option value="">Select Party</option>
+                @foreach ($parties as $party)
+                    <option value="{{ $party->id }}">{{$party->company . ' - ' . $party->name}}</option>
                 @endforeach
             </select>
             @error('supplier_id')
@@ -57,7 +56,7 @@
             <select type="text" name="item_id" value="{{ old('item_id') }}" id="item_id" @error('item_id') style="border-color: red;"@enderror onchange="updateUOM(this)">
                 <option value="">Select an Item</option>
                 @foreach ($items as $item)
-                    <option value="{{ $item->id }}" data-uom="{{ $item->uom }}">{{$item->sku}}</option>
+                    <option value="{{ $item->id }}" data-uom="{{ $item->uom->name }}">{{$item->code}}</option>
                 @endforeach
             </select>
             @error('item_id')
@@ -115,17 +114,17 @@
 
     function updateForm() {
        const itemSelect = document.getElementById('type');
-        if(itemSelect.value == "Issue" || itemSelect.value == "Reciept") {
-            document.querySelector('#supplier').style.display = "none";
+        if(itemSelect.value == "Issuance" || itemSelect.value == "Reciept") {
+            document.querySelector('#party').style.display = "none";
             document.querySelector('#consumer').style.display = "block";
         }
         else if (itemSelect.value == "Purchase" || itemSelect.value == "Purchase Return") {
             document.querySelector('#consumer').style.display = "none"
-            document.querySelector('#supplier').style.display = "block"
+            document.querySelector('#party').style.display = "block"
         }
         else {
             document.querySelector('#consumer').style.display = "none"
-            document.querySelector('#supplier').style.display = "none"
+            document.querySelector('#party').style.display = "none"
         }
     }
     </script>

@@ -1,8 +1,8 @@
 <x-Layout>
     <div class=" w-4/5 m-auto p-10">
-    <h1>Add New Supplier</h1>
+    <h1>Add New Party</h1>
 
-    <form action="{{ route('supplier.store') }}" method="POST">
+    <form action="{{ route('party.store') }}" method="POST">
         @csrf
         <div class="inputdiv">
             <label for="name" class="block text-sm font-medium text-gray-700">Name: </label>

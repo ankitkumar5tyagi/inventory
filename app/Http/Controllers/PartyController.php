@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Party;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
-class SupplierController extends Controller
+class PartyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $suppliers = Supplier::all();
-        return view('supplier.index' , ['suppliers' => $suppliers]);
+        $parties = Party::all();
+        return view('party.index' , ['parties' => $parties]);
     }
 
     /**
@@ -22,7 +22,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view ('supplier.create');
+        return view ('party.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class SupplierController extends Controller
     {
         $field = $request->validate([
             'name' => 'required|max:20',
-            'email'=> 'nullable|email|unique:suppliers',
+            'email'=> 'nullable|email|unique:parties',
             'phone' => 'nullable|digits:10',
             'address' => 'nullable',
             'company' => 'nullable',
@@ -41,23 +41,23 @@ class SupplierController extends Controller
             'status' => 'nullable'
         ]);
          
-        $supplier = new Supplier();
-        $supplier->name = $request->name;
-        $supplier->email = $request->email;
-        $supplier->phone = $request->phone;
-        $supplier->address = $request->address;
-        $supplier->company = $request->company;
-        $supplier->pan = $request->pan;
-        $supplier->gst = $request->gst;
-        $supplier->status = $request->status;
-        $supplier->save();
-        return redirect()->route('supplier.index');
+        $party = new Party();
+        $party->name = $request->name;
+        $party->email = $request->email;
+        $party->phone = $request->phone;
+        $party->address = $request->address;
+        $party->company = $request->company;
+        $party->pan = $request->pan;
+        $party->gst = $request->gst;
+        $party->status = $request->status;
+        $party->save();
+        return redirect()->route('party.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Supplier $supplier)
+    public function show(Party $party)
     {
         //
     }
@@ -65,15 +65,15 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Supplier $supplier)
+    public function edit(Party $party)
     {
-        return view('supplier.edit', compact('supplier'));
+        return view('party.edit', compact('party'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, Party $party)
     {
         $field = $request->validate([
             'name' => 'required|max:20',
@@ -86,24 +86,24 @@ class SupplierController extends Controller
             'status' => 'nullable'
         ]);
 
-        $supplier->update($field);
-        return redirect()->route('supplier.index');
+        $party->update($field);
+        return redirect()->route('party.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(Party $party)
     {
-        $supplier->delete();
-        return redirect()->route('supplier.index');
+        $party->delete();
+        return redirect()->route('party.index');
     }
 
     public function export()
     {
-        $suppliers = Supplier::all();
+        $parties = Party::all();
 
-        $filename = "suppliers.csv";
+        $filename = "parties.csv";
         $headers = [
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$filename",
@@ -114,18 +114,18 @@ class SupplierController extends Controller
 
         $columns = ['Name', 'Email', 'Phone', 'Address', 'Company', 'Status'];
 
-        $callback = function () use ($suppliers, $columns) {
+        $callback = function () use ($parties, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns); // Header row
 
-            foreach ($suppliers as $supplier) {
+            foreach ($parties as $party) {
                 fputcsv($file, [
-                    $supplier->name,
-                    $supplier->email,
-                    $supplier->phone,
-                    $supplier->address,
-                    $supplier->company,
-                    $supplier->status ? 'Active' : 'Inactive' // Optional status label
+                    $party->name,
+                    $party->email,
+                    $party->phone,
+                    $party->address,
+                    $party->company,
+                    $party->status ? 'Active' : 'Inactive' // Optional status label
                 ]);
             }
 

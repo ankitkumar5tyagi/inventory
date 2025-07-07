@@ -29,8 +29,8 @@ class Transaction extends Model
    public function consumer() {
     return $this->belongsTo(Consumer::class);
    }
-   public function supplier() {
-    return $this->belongsTo(Supplier::class);
+   public function party() {
+    return $this->belongsTo(Party::class);
    }
    public function item() {
     return $this->belongsTo(Item::class);

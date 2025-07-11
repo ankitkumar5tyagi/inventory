@@ -1,26 +1,27 @@
 <x-Layout>
     <div class=" flex-1 h-20 w-4/5 m-auto p-10">
-    <h1>Voucher>{{$voucher->name}}</h1>
-    <a class="btn" href="/addVoucherEntry?voucher={{ $voucher->id }}">Add New {{$voucher->name}}</a>
+    <h1>Vouchers</h1>
+    <a class="btn" href="{{ route('voucherEntry.create') }}">Add New Voucher</a>
+    
     <table>
         <thead>
             <tr>
+                <th>Voucher</th>
                 <th>Date</th>
                 <th>Voucher No</th>
                 <th>Party</th>
                 <th>Note</th>
-                <th>Edit</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-    @foreach ($voucher->voucherEntry as $voucherEntry)
+    @foreach ($voucherEntries as $voucherEntry)
         <tr>
+            <td>{{$voucherEntry->voucher_id}}</td>
             <td>{{$voucherEntry->date}}</td>
-            <td><a href="{{ route('voucherEntry.show', $voucherEntry) }}">{{ $voucherEntry->voucher_no }}</a></td>
-            <td>{{$voucherEntry->party->company}}</td>
+            <td><a href="{{ route('voucherEntry.show', $voucherEntry) }}">{{ $voucherEntry->voucher_no }}</td>
+            <td>{{$voucherEntry->party_id}}</td>
             <td>{{$voucherEntry->note}}</td>
-            <td><a class="warningbtn" href="{{ route('voucherEntry.edit', $voucher) }}">Edit</a></td>
+            <td><a class="warningbtn" href="{{ route('voucherEntry.edit', $voucherEntry) }}">Edit</a></td>
             <td><form action="{{route('voucherEntry.destroy', $voucherEntry)}}" method="post">
                 @csrf
                 @method('DELETE')

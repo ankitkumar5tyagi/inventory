@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Party;
+use App\Models\partyGroup;
+use Database\Seeders\PartyGroupSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -17,12 +19,22 @@ class PartyController extends Controller
         return view('party.index' , ['parties' => $parties]);
     }
 
+    public function addParty(Request $request) 
+    {
+        $partyGroup_id = $request->get('partyGroup');
+        $partyGroup = partyGroup::findOrFail($partyGroup_id);
+        $partyGroups = PartyGroup::all();
+        return view('party.create', compact('partyGroup', 'partyGroups'));
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view ('party.create');
+        $partyGroups = PartyGroup::all();
+        $partyGroup = new \stdClass();
+        $partyGroup->id = "na";
+        return view ('party.create', compact('partyGroups','partyGroup'));
     }
 
     /**
@@ -31,6 +43,7 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         $field = $request->validate([
+            'party_group_id'=>'required',
             'name' => 'required|max:20',
             'email'=> 'nullable|email|unique:parties',
             'phone' => 'nullable|digits:10',
@@ -42,6 +55,7 @@ class PartyController extends Controller
         ]);
          
         $party = new Party();
+        $party->party_group_id = $request->party_group_id;
         $party->name = $request->name;
         $party->email = $request->email;
         $party->phone = $request->phone;
@@ -51,7 +65,7 @@ class PartyController extends Controller
         $party->gst = $request->gst;
         $party->status = $request->status;
         $party->save();
-        return redirect()->route('party.index');
+        return redirect()->route('partyGroup.show', $request->party_group_id);
     }
 
     /**
@@ -76,6 +90,7 @@ class PartyController extends Controller
     public function update(Request $request, Party $party)
     {
         $field = $request->validate([
+            'party_group_id'=>'required',
             'name' => 'required|max:20',
             'email'=> 'nullable|email',
             'phone' => 'nullable|digits:10',
@@ -87,7 +102,7 @@ class PartyController extends Controller
         ]);
 
         $party->update($field);
-        return redirect()->route('party.index');
+        return redirect()->route('partyGroup.show', $party->party_group_id);
     }
 
     /**
@@ -96,7 +111,7 @@ class PartyController extends Controller
     public function destroy(Party $party)
     {
         $party->delete();
-        return redirect()->route('party.index');
+        return redirect()->route('partyGroup.show', $party->party_group_id);
     }
 
     public function export()

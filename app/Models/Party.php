@@ -11,6 +11,7 @@ class Party extends Model
     use HasFactory;
 
     protected $fillable = [
+        'partyGroup_id',
         'name',
         'email',
         'phone',
@@ -20,4 +21,12 @@ class Party extends Model
         'gst',
         'status'
     ];
+
+    public function voucherEntry(){
+        return $this->hasMany(VoucherEntry::class);
+    }
+
+    public function partyGroup() {
+        return $this->belongsTo(PartyGroup::class);
+    }
 }

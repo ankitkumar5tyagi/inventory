@@ -19,11 +19,9 @@
                 <li><a href="{{ route('group.index') }}">Groups</a></li>
                 <li><a href="{{ route('godown.index') }}">Godowns</a></li>
                 <li><a href="{{ route('category.index') }}">Categories</a></li>
-                <li><a href="{{ route('consumer.index')}}">Departments</a></li>
-                <li><a href="{{ route('party.index') }}">Parties</a></li>
                 <li><a href="{{ route('item.index') }}">Items</a></li>
                 <li><a href="{{ route('voucher.index') }}">Vouchers</a></li>
-                <li><a href="{{ route('transaction.index') }}">Transactions</a></li>
+                <li><a href="{{ route('partyGroup.index') }}">Parties</a></li>
                 @endauth
                 </div>
 

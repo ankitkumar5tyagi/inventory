@@ -26,11 +26,10 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $consumers = Consumer::all();
         $parties = Party::all();
         $items = Item::all();
         $vouchers = Voucher::all();
-        return view('transaction.create',compact('consumers','parties','items', 'vouchers'));
+        return view('transaction.create',compact('parties','items', 'vouchers'));
     }
 
     /**

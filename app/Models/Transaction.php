@@ -11,28 +11,17 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
-        'type',
-        'consumer_id',
-        'supplier_id',
+        'voucher_entry_id',
         'item_id',
-        'uom',
         'quantity',
-        'bill_order_no',
-        'note'
+        'uom',
+        'rate',
     ];
 
-   public function user() {
-    return $this->belongsTo(User::class);
-   }
-
-   public function consumer() {
-    return $this->belongsTo(Consumer::class);
-   }
-   public function party() {
-    return $this->belongsTo(Party::class);
-   }
    public function item() {
     return $this->belongsTo(Item::class);
+   }
+   public function voucherEntry() {
+    return $this->belongsTo(VoucherEntry::class);
    }
 }

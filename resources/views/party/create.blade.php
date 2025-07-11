@@ -4,6 +4,19 @@
 
     <form action="{{ route('party.store') }}" method="POST">
         @csrf
+        
+        <div class="inputdiv">
+            <label for="party_group_id" class="block text-sm font-medium text-gray-700">Party Group: </label>
+            <select name="party_group_id" id="party_group_id" @error('party_group_id') style="border-color: red;"@enderror>
+                <option>Select Group</option>
+                @foreach ($partyGroups as $parties)
+                    <option value="{{ $parties->id }}" {{($parties->id == $partyGroup->id)? "selected" : ""}}>{{$parties->name}}</option>
+                @endforeach
+            </select>
+            @error('party_group_id')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
         <div class="inputdiv">
             <label for="name" class="block text-sm font-medium text-gray-700">Name: </label>
             <input type="text" value="{{ old('name') }}" name="name" id="name" @error('name') style="border-color: red;"@enderror>

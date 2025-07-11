@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('party_group_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable();

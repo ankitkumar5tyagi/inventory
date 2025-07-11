@@ -1,10 +1,8 @@
 <x-Layout>
     <div class=" flex-1 h-20 w-4/5 m-auto p-10">
-    <h1>Parties</h1>
-    <a class="btn" href="{{ route('party.create') }}">Add Party</a>
-    <a class="btn" href="{{ route('parties.export') }}">Download</a>
-    
-    <table>
+    <h1>Parties>{{$partyGroup->name}}</h1>
+    <a class="btn" href="/addParty?partyGroup={{ $partyGroup->id }}">Add New {{$partyGroup->name}}</a>
+   <table>
         <thead>
             <tr>
                 <th>Party Group</th>
@@ -21,9 +19,9 @@
             </tr>
         </thead>
         <tbody>
-    @foreach ($parties as $party)
+    @foreach ($partyGroup->party as $party)
         <tr>
-            <td>{{$party->party_group_id}}</td>
+            <td>{{$party->partyGroup->name}}</td>
             <td>{{$party->name}}</td>
             <td>{{$party->email}}</td>
             <td>{{$party->phone}}</td>

@@ -5,6 +5,14 @@
     <form action="{{ route('party.update', $party) }}" method="POST">
         @csrf
         @method("PUT")
+
+        <div class="inputdiv">
+            <label for="party_group_id" class="block text-sm font-medium text-gray-700">Party Group: </label>
+            <input type="text" value="{{ $party->party_group_id }}" name="party_group_id" id="party_group_id" @error('party_group_id') style="border-color: red;"@enderror>
+            @error('party_group_id')
+                <span class="text-red-600">{{$message}}</span>
+            @enderror
+        </div>
         <div class="inputdiv">
             <label for="name" class="block text-sm font-medium text-gray-700">Name: </label>
             <input type="text" name="name" value="{{ $party->name }}" id="name" @error('name') style="border-color: red;"@enderror>

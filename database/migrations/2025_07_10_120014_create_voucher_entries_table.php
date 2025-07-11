@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('voucher_entries', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
             $table->foreignId('voucher_id')->constrained()->restrictOnDelete();
-            $table->foreignId('consumer_id')->nullable()->constrained('consumers')->restrictOnDelete();
-            $table->foreignId('supplier_id')->nullable()->constrained('parties')->restrictOnDelete();
-            $table->foreignId('item_id')->constrained('items')->restrictOnDelete();
-            $table->string('uom');
-            $table->decimal('quantity', 8, 2);
-            $table->string('bill_order_no')->nullable();
+            $table->date('date');
+            $table->string('voucher_no');
+            $table->foreignId('party_id')->constrained()->cascadeOnDelete()->nullable();
             $table->text('note')->nullable();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->timestamps();
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('voucher_entries');
     }
 };

@@ -14,15 +14,17 @@
         </thead>
         <tbody>
     @foreach ($vouchers as $voucher)
-        <tr>
-            <td><a href="{{ route('voucher.show', $voucher) }}">{{ $voucher->name }}</td>
-            <td>{{$voucher->type}}</td>
-            <td><a class="warningbtn" href="{{ route('voucher.edit', $voucher) }}">Edit</a></td>
-            <td><form action="{{route('voucher.destroy', $voucher)}}" method="post">
-                @csrf
-                @method('DELETE')
-            <button class="dangerbtn" type="submit">Delete</button>  
-            </form></td>
+        <tr onclick="window.location='{{ route('voucher.show', $voucher) }}'" style="cursor: pointer;">
+            <td>{{ $voucher->name }}</td>
+            <td>{{ $voucher->type }}</td>
+            <td><a class="warningbtn" href="{{ route('voucher.edit', $voucher) }}" onclick="event.stopPropagation();">Edit</a></td>
+            <td>
+                <form action="{{ route('voucher.destroy', $voucher) }}" method="POST" onclick="event.stopPropagation();">
+                    @csrf
+                    @method('DELETE')
+                    <button class="dangerbtn" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     @endforeach
         </tbody>

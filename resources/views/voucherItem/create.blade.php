@@ -1,8 +1,8 @@
 <x-Layout>
     <div class=" w-4/5 m-auto p-10">
-    <h1>Add New Transaction</h1>
+    <h1>Add New VoucherItem</h1>
 
-    <form action="{{ route('transaction.store') }}" method="POST">
+    <form action="{{ route('voucherItem.store') }}" method="POST">
         @csrf
 
         <div class="inputdiv">

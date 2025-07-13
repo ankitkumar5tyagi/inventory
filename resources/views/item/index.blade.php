@@ -28,7 +28,7 @@
         <tr>
             <td>{{$item->code}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->uom->code}}</td>
+            <td>{{$item->uom->name}}</td>
             <td>{{$item->description}}</td>
             <td>{{$item->group->name}}</td>
             <td>{{$item->category->name}}</td>

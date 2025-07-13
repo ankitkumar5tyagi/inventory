@@ -6,7 +6,7 @@
 @source '../**/*.js';
 
 main {
-    @apply w-full bg-blue-100 h-screen text-center;
+    @apply w-full bg-blue-100 min-h-screen max-h-svw text-center;
 }
 
 header, footer {
@@ -21,7 +21,7 @@ footer {
 a:hover {
     @apply underline
 }
-h1 {
+h1, h2, h3, h4 {
     @apply m-4 text-2xl font-bold text-teal-800;
 }
 .inputdiv {
@@ -34,7 +34,7 @@ input:focus {
     @apply bg-cyan-50 border-teal-800 border-2 outline-0;
 }
 .btn {
-    @apply w-30 p-1 mb-4 bg-teal-800 rounded text-white;
+    @apply w-30 h-10 p-1 mb-4 bg-teal-800 rounded text-white;
 }
 .btn:hover {
     @apply bg-teal-900 cursor-pointer;

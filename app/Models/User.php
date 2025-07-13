@@ -50,8 +50,8 @@ class User extends Authenticatable
         return $this->hasMany(Item::class);
     }
 
-    public function transaction() {
-        return $this->hasMany(Transaction::class);
+    public function voucherItem() {
+        return $this->hasMany(VoucherItem::class);
     }
     public function voucherEntry() {
         return $this->hasMany(VoucherEntry::class);

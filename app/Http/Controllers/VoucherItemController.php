@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Consumer;
 use App\Models\Item;
 use App\Models\Party;
-use App\Models\Transaction;
+use App\Models\VoucherItem;
 use App\Models\Voucher;
 use App\Models\VoucherEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TransactionController extends Controller
+class VoucherItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $transactions = Transaction::with(['item','voucherEntry'])->get();
-        return view('transaction.index', compact('transactions'));
+        $voucherItems = VoucherItem::with(['item','voucherEntry'])->get();
+        return view('voucherItem.index', compact('voucherItems'));
     }
 
     /**
@@ -29,7 +29,7 @@ class TransactionController extends Controller
     {
         $items = Item::all();
         $voucherEntries = VoucherEntry::all();
-        return view('transaction.create', compact('items', 'voucherEntries'));
+        return view('voucherItem.create', compact('items', 'voucherEntries'));
     }
 
     /**
@@ -44,15 +44,15 @@ class TransactionController extends Controller
             'uom' => 'required',
             'rate' => 'required'
         ]);
-        Transaction::create($fields);
-        return redirect()->route('transaction.index');
+        VoucherItem::create($fields);
+        return redirect()->route('voucherItem.index');
     }
 
     /**
      * Display the specified resource.
      * 
      */
-    public function show(Transaction $transaction)
+    public function show(VoucherItem $voucherItem)
     {
         //
     }
@@ -60,17 +60,17 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit(VoucherItem $voucherItem)
     {
          $items = Item::all();
         $voucherEntries = VoucherEntry::all();
-        return view('transaction.edit', compact('transaction', 'voucherEntries','items'));
+        return view('voucherItem.edit', compact('voucherItem', 'voucherEntries','items'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, VoucherItem $voucherItem)
     {
         $fields = $request->validate([
             'voucher_entry_id' => 'required',
@@ -79,14 +79,14 @@ class TransactionController extends Controller
             'uom' => 'required',
             'rate' => 'required'
         ]);
-        $transaction->update($fields);
-        return redirect()->route('transaction.index');
+        $voucherItem->update($fields);
+        return redirect()->route('voucherItem.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(VoucherItem $voucherItem)
     {
         //
     }

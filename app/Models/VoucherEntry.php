@@ -25,8 +25,8 @@ class VoucherEntry extends Model
     public function party() {
         return $this->belongsTo(Party::class);
     }
-    public function transaction() {
-        return $this->hasMany(Transaction::class);
+    public function voucherItem() {
+        return $this->hasMany(VoucherItem::class);
     }
 
 

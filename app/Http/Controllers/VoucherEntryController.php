@@ -59,7 +59,7 @@ class VoucherEntryController extends Controller
      */
     public function show(VoucherEntry $voucherEntry)
     {
-        $voucherEntry->load('transaction');
+        $voucherEntry->load('transaction.item');
         return view('voucherEntry.show', compact('voucherEntry'));
     }
 

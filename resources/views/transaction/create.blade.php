@@ -6,13 +6,13 @@
         @csrf
 
         <div class="inputdiv">
-            <label for="voucherEntry_id" class="block text-sm font-medium text-gray-700">Voucher: </label>
-            <select type="text" value="{{ old('voucherEntry_id') }}" name="voucherEntry_id" id="voucherEntry_id" @error('voucherEntry_id') style="border-color: red;"@enderror onchange="updateForm()">
-            @foreach ($vouchers as $voucher)
-                <option value="{{ $voucher->id }}">{{$voucher->name}}</option>
+            <label for="voucher_entry_id" class="block text-sm font-medium text-gray-700">Voucher No: </label>
+            <select type="text" value="{{ old('voucher_entry_id') }}" name="voucher_entry_id" id="voucher_entry_id" @error('voucher_entry_id') style="border-color: red;"@enderror onchange="updateForm()">
+            @foreach ($voucherEntries as $voucherEntry)
+                <option value="{{ $voucherEntry->id }}">{{$voucherEntry->voucher_no}}</option>
             @endforeach   
             </select>
-            @error('voucherEntry_id')
+            @error('voucher_entry_id')
                 <span class="text-red-600">{{$message}}</span>
             @enderror
         </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="inputdiv">
             <label for="uom" class="block text-sm font-medium text-gray-700">UOM: </label>
-            <input type="text" name="uom" value="{{ old('uom') }}" id="uom" @error('uom') style="border-color: red;"@enderror readonly>
+            <input type="text" name="uom" value="{{ old('uom') }}" id="uom" @error('uom') style="border-color: red;"@enderror>
             @error('uom')
                 <span class="text-red-600">{{$message}}</span>
             @enderror

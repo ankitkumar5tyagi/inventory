@@ -1,7 +1,7 @@
 <x-Layout>
     <div class=" flex-1 h-20 w-4/5 m-auto p-10">
     <h1>Voucher>{{$voucherEntry->voucher->name}}>{{$voucherEntry->voucher_no}}</h1>
-    <a class="btn" href="#">Add New</a>
+    <a class="btn" href="{{ route('transaction.create') }}">Add New Voucher Item</a>
     <table>
         <thead>
             <tr>
@@ -17,12 +17,12 @@
         
         @foreach ($voucherEntry->transaction as $transaction)
         <tr>
-            <td>{{$transaction->item_id}}</td> 
+            <td>{{$transaction->item->code. "-" .$transaction->item->name}}</td> 
             <td>{{$transaction->quantity}}</td> 
             <td>{{$transaction->uom}}</td> 
             <td>{{$transaction->rate}}</td> 
-            <td><a class="warningbtn" href="{{ route('voucherEntry.edit', $voucherEntry) }}">Edit</a></td>
-            <td><form action="{{route('voucherEntry.destroy', $voucherEntry)}}" method="post">
+            <td><a class="warningbtn" href="{{ route('transaction.edit', $transaction) }}">Edit</a></td>
+            <td><form action="{{route('transaction.destroy', $transaction)}}" method="post">
                 @csrf
                 @method('DELETE')
             <button class="dangerbtn" type="submit">Delete</button>  

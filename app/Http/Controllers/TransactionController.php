@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Party;
 use App\Models\Transaction;
 use App\Models\Voucher;
+use App\Models\VoucherEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with(['item','party','consumer'])->get();
+        $transactions = Transaction::with(['item','voucherEntry'])->get();
         return view('transaction.index', compact('transactions'));
     }
 
@@ -26,10 +27,9 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $parties = Party::all();
         $items = Item::all();
-        $vouchers = Voucher::all();
-        return view('transaction.create',compact('parties','items', 'vouchers'));
+        $voucherEntries = VoucherEntry::all();
+        return view('transaction.create', compact('items', 'voucherEntries'));
     }
 
     /**
@@ -37,34 +37,20 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $field = $request->validate([
-            'date'=>'required|date',
-            'type' => 'required',
-            'consumer_id' => 'nullable',
-            'supplier_id' => 'nullable',
+        $fields = $request->validate([
+            'voucher_entry_id' => 'required',
             'item_id' => 'required',
-            'uom' => 'required',
             'quantity' => 'required',
-            'bill_order_no'=> 'nullable',
-            'note' => 'nullable'
+            'uom' => 'required',
+            'rate' => 'required'
         ]);
-        $user = Auth::user();
-        $user->transaction()->create([
-            'date'=> $request->date,
-            'type' => $request->type,
-            'consumer_id' => $request->consumer_id,
-            'supplier_id' => $request->supplier_id,
-            'item_id' => $request->item_id,
-            'uom' => $request->uom,
-            'quantity' => $request->quantity,
-            'bill_order_no'=> $request->bill_order_no,
-            'note' => $request->note
-        ]);
+        Transaction::create($fields);
         return redirect()->route('transaction.index');
     }
 
     /**
      * Display the specified resource.
+     * 
      */
     public function show(Transaction $transaction)
     {
@@ -76,7 +62,9 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        return view('transaction.edit', $transaction);
+         $items = Item::all();
+        $voucherEntries = VoucherEntry::all();
+        return view('transaction.edit', compact('transaction', 'voucherEntries','items'));
     }
 
     /**
@@ -84,7 +72,15 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $fields = $request->validate([
+            'voucher_entry_id' => 'required',
+            'item_id' => 'required',
+            'quantity' => 'required',
+            'uom' => 'required',
+            'rate' => 'required'
+        ]);
+        $transaction->update($fields);
+        return redirect()->route('transaction.index');
     }
 
     /**

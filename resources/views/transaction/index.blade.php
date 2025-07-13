@@ -7,15 +7,11 @@
     <table>
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Consumer</th>
-                <th>Party</th>
+                <th>Voucher Entry</th>
                 <th>Item</th>
-                <th>UOM</th>
                 <th>Quantity</th>
-                <th>Bill/Order No</th>
-                <th>Note</th>
+                <th>UOM</th>
+                <th>Rate</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -23,20 +19,17 @@
         <tbody>
     @foreach ($transactions as $transaction)
         <tr>
-            <td>{{$transaction->date}}</td>
-            <td>{{$transaction->type}}</td>
-            <td>{{$transaction->consumer?->name ?? '-'}}</td>
-            <td>{{$transaction->party ? $transaction->party->company . ' - ' . $transaction->party->name : '-'}}</td>
-            <td>{{$transaction->item->sku}}</td>
-            <td>{{$transaction->uom}}</td>
+            <td>{{$transaction->voucherEntry->voucher_no}}</td>
+            <td>{{$transaction->item->code. "-" .$transaction->item->name}}</td>
             <td>{{$transaction->quantity}}</td>
-            <td>{{$transaction->bill_order_no}}</td>
-            <td>{{$transaction->note}}</td>
+            <td>{{$transaction->uom}}</td>
+            <td>{{$transaction->rate}}</td>
+            
             <td><a class="warningbtn" href="{{ route('transaction.edit', $transaction) }}">Edit</a></td>
             <td><form action="{{route('transaction.destroy', $transaction)}}" method="post">
                 @csrf
                 @method('DELETE')
-            <button class="dangerbtn" type="submit">Delete</button>  
+            <button class="dangerbtn" type="submit">Delete</button> 
             </form></td>
         </tr>
     @endforeach

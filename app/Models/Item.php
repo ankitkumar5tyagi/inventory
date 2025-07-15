@@ -41,4 +41,8 @@ class Item extends Model
     public function godown() {
         return $this->belongsTo(Godown::class);
     }
+    public function voucherItem() {
+        return $this->hasMany(VoucherItem::class);
+    }
+
 }

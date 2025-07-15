@@ -25,7 +25,7 @@
         </thead>
         <tbody>
     @foreach ($items as $item)
-        <tr>
+        <tr onclick="window.location='{{ route('item.show', $item) }}'" style="cursor: pointer;">
             <td>{{$item->code}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->uom->name}}</td>

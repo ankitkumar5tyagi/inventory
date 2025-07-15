@@ -20,7 +20,7 @@
             <td><a href="{{ route('voucherEntry.show', $voucherEntry) }}">{{ $voucherEntry->voucher_no }}</a></td>
             <td>{{$voucherEntry->party->company}}</td>
             <td>{{$voucherEntry->note}}</td>
-            <td><a class="warningbtn" href="{{ route('voucherEntry.edit', $voucher) }}">Edit</a></td>
+            <td><a class="warningbtn" href="{{ route('voucherEntry.edit', $voucherEntry) }}">Edit</a></td>
             <td><form action="{{route('voucherEntry.destroy', $voucherEntry)}}" method="post">
                 @csrf
                 @method('DELETE')

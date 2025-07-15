@@ -78,7 +78,20 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        $item->load('voucherItem');
+
+        $inbound = $item->voucherItem()
+    ->whereHas('voucherEntry.voucher', fn ($q) => $q->where('type', 'Inbound'))
+    ->sum('quantity');
+
+    $outbound = $item->voucherItem()
+    ->whereHas('voucherEntry.voucher', fn ($q) => $q->where('type', 'Outbound'))
+    ->sum('quantity');
+
+    $availableQty = $inbound - $outbound;
+
+
+        return view('item.show', compact('item', 'availableQty'));
     }
 
     /**

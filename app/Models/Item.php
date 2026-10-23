@@ -33,7 +33,7 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
     public function uom() {
-        return $this->belongsTo(UOM::class);
+        return $this->belongsTo(Uom::class);
     }
     public function group() {
         return $this->belongsTo(Group::class);

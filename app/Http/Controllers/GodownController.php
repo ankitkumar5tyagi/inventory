@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\godown;
+use App\Models\Godown;
 use Illuminate\Http\Request;
 
 class GodownController extends Controller
@@ -40,7 +40,7 @@ class GodownController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(godown $godown)
+    public function show(Godown $godown)
     {
         //
     }
@@ -48,7 +48,7 @@ class GodownController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(godown $godown)
+    public function edit(Godown $godown)
     {
         return view('godown.edit', compact('godown'));
     }
@@ -56,7 +56,7 @@ class GodownController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, godown $godown)
+    public function update(Request $request, Godown $godown)
     {
         $fields = $request->validate([
             'name' => 'required',
@@ -69,7 +69,7 @@ class GodownController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(godown $godown)
+    public function destroy(Godown $godown)
     {
         $godown->delete();
         return redirect()->route('godown.index');

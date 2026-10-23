@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class godown extends Model
+class Godown extends Model
 {
     /** @use HasFactory<\Database\Factories\GodownFactory> */
     use HasFactory;

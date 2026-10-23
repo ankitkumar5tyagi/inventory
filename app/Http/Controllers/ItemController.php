@@ -88,7 +88,7 @@ class ItemController extends Controller
     ->whereHas('voucherEntry.voucher', fn ($q) => $q->where('type', 'Outbound'))
     ->sum('quantity');
 
-    $availableQty = $inbound - $outbound;
+    $availableQty = $inbound - $outbound + $item->opening;
 
 
         return view('item.show', compact('item', 'availableQty'));
